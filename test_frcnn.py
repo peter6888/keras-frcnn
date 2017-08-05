@@ -35,10 +35,10 @@ config_output_filename = options.config_filename
 with open(config_output_filename, 'rb') as f_in:
 	C = pickle.load(f_in)
 
-if C.network == 'resnet50':
-	import keras_frcnn.resnet as nn
-elif C.network == 'vgg':
-	import keras_frcnn.vgg as nn
+#if C.network == 'resnet50':
+import keras_frcnn.resnet as nn
+#elif C.network == 'vgg':
+#	import keras_frcnn.vgg as nn
 
 # turn off any data augmentation at test time
 C.use_horizontal_flips = False
@@ -101,10 +101,10 @@ print(class_mapping)
 class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 C.num_rois = int(options.num_rois)
 
-if C.network == 'resnet50':
-	num_features = 1024
-elif C.network == 'vgg':
-	num_features = 512
+#if C.network == 'resnet50':
+num_features = 1024
+#elif C.network == 'vgg':
+#	num_features = 512
 
 if K.image_dim_ordering() == 'th':
 	input_shape_img = (3, None, None)
@@ -242,6 +242,6 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 
 	print('Elapsed time = {}'.format(time.time() - st))
 	print(all_dets)
-	cv2.imshow('img', img)
-	cv2.waitKey(0)
-	# cv2.imwrite('./results_imgs/{}.png'.format(idx),img)
+	#cv2.imshow('img', img)
+	#cv2.waitKey(0)
+	cv2.imwrite('./results_imgs/{}.png'.format(idx),img)
