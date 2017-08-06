@@ -94,3 +94,10 @@ ENV/
 
 # .264 video file
 *.264
+
+# Temp imags
+264_imgs/
+results_imgs/
+
+# tar file
+*.tar
