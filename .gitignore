@@ -101,3 +101,7 @@ results_imgs/
 
 # tar file
 *.tar
+
+# un-tared data
+data/VOCdevkit/
+
