@@ -105,3 +105,6 @@ results_imgs/
 # un-tared data
 data/VOCdevkit/
 
+# nvidia driver installation package
+*.deb
+
