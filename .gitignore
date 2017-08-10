@@ -97,7 +97,7 @@ ENV/
 
 # Temp imags
 264_imgs/
-results_imgs/
+results_imgs/*.png
 
 # tar file
 *.tar
