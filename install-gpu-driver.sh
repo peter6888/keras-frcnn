@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 o "Checking for CUDA and installing."
 # Check for CUDA and try to install.
 if ! dpkg-query -W cuda; then
@@ -7,4 +8,3 @@ if ! dpkg-query -W cuda; then
   apt-get update
   apt-get install cuda -y
 fi
-`
