@@ -108,3 +108,8 @@ data/VOCdevkit/
 # nvidia driver installation package
 *.deb
 
+*.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
