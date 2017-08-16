@@ -113,3 +113,6 @@ data/VOCdevkit/
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+264_imgs.zip
+*.mpg
+*.orig
