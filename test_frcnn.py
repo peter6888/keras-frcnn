@@ -244,4 +244,6 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	print(all_dets)
 	#cv2.imshow('img', img)
 	#cv2.waitKey(0)
-	cv2.imwrite('./results_imgs/{}.png'.format(img_name.split(".")[0]),img)
+	outfile = './results_imgs/{}.png'.format(img_name.split(".")[0])
+	print("save to image file {}".format(outfile))
+	cv2.imwrite(outfile,img)
