@@ -147,6 +147,9 @@ bbox_threshold = 0.8
 
 visualise = True
 
+# to delete background
+fgbg = cv2.createBackgroundSubtractorMOG2()
+
 for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
 		continue
@@ -155,8 +158,11 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	filepath = os.path.join(img_path,img_name)
 
 	img = cv2.imread(filepath)
+    
+	mask = fgbg.apply(img)
+	remove_fgbg = cv2.bitwise_or(img,img,mask = mask)
 
-	X, ratio = format_img(img, C)
+	X, ratio = format_img(remove_fgbg, C)
 
 	if K.image_dim_ordering() == 'tf':
 		X = np.transpose(X, (0, 2, 3, 1))
