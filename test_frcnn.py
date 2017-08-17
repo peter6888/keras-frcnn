@@ -149,6 +149,7 @@ visualise = True
 
 # to delete background
 fgbg = cv2.createBackgroundSubtractorMOG2()
+idx_fgbg = 0
 
 for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
@@ -162,6 +163,11 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	mask = fgbg.apply(img)
 	remove_fgbg = cv2.bitwise_or(img,img,mask = mask)
 
+	idx_fgbg += 1
+	if idx_fgbg < 5:
+		cv2.imwrite('./results_imgs/{}.png'.format(img_name.split(".")[0]),img)
+		continue
+        
 	X, ratio = format_img(remove_fgbg, C)
 
 	if K.image_dim_ordering() == 'tf':
@@ -224,7 +230,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			probs[cls_name].append(np.max(P_cls[0, ii, :]))
 
 	all_dets = []
-
+        
 	for key in bboxes:
 		bbox = np.array(bboxes[key])
 
@@ -250,6 +256,4 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	print(all_dets)
 	#cv2.imshow('img', img)
 	#cv2.waitKey(0)
-	outfile = './results_imgs/{}.png'.format(img_name.split(".")[0])
-	print("save to image file {}".format(outfile))
-	cv2.imwrite(outfile,img)
+	cv2.imwrite('./results_imgs/{}.png'.format(img_name.split(".")[0]),img)
