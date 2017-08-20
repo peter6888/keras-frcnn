@@ -255,10 +255,10 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
     all_dets = []
 
     counts.append(len(bboxes))
-    current_majority = get_majority_element(counts[::-5])
-    if len(bboxes) > 0 and current_majority==0:
-        current_majority = len(bboxes)
-    print("count:{}".format(current_majority))
+    current_majority = max(counts[::-5]) #get_majority_element(counts[::-5])
+    #if len(bboxes) > 0 and current_majority==0:
+    #    current_majority = len(bboxes)
+    #print("count:{}".format(current_majority))
     # current_majority = len(bboxes) if current_majority==0 else current_majority
     for key in bboxes:
         bbox = np.array(bboxes[key])
@@ -280,6 +280,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
             cv2.rectangle(img, (textOrg[0] - 5, textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (0, 0, 0), 2)
             cv2.rectangle(img, (textOrg[0] - 5,textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (255, 255, 255), -1)
             cv2.putText(img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
+    img = cv2.putText(img, "{} person".format(current_majority), (50,50), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 0, 0), 2)
 
     print('Elapsed time = {}'.format(time.time() - st))
     print(all_dets)
