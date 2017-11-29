@@ -116,3 +116,7 @@ data/VOCdevkit/
 264_imgs.zip
 *.mpg
 *.orig
+*.pb
+
+# MPII images
+data/mpii/
